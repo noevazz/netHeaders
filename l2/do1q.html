@@ -274,7 +274,7 @@
               <tr>
                 <td class="answersTitles" colspan="16">TPI</td>
                 <td class="answersTitles" colspan="3">PCP</td>
-                <td class="answersTitles" colspan="1">CFI</td>
+                <td class="answersTitles" colspan="1">DEI</td>
                 <td class="answersTitles" colspan="12">VID</td>
               </tr>
               <tr>
@@ -293,7 +293,7 @@
                   ondragover="allowDrop(event)"
                 ></td>
                 <td
-                  id="tagfieldscfi"
+                  id="tagfieldsdei"
                   colspan="1"
                   title="1 bit"
                   ondrop="drop(event)"
@@ -333,7 +333,7 @@
         PCP
       </div>
       <div
-        id="field-tagfieldscfi"
+        id="field-tagfieldsdei"
         class="draggable"
         draggable="true"
         ondragstart="drag(event)"
@@ -424,7 +424,7 @@
             </li>
             <li>
               <strong>DEI:</strong> Drop Eligible Indicator , 1 bit. Used to
-              indicate if the frame can be dropped if the network is congested.
+              indicate if the frame can be dropped if the network is congested. Note: The Canonical Format Indicator (CFI) is a bit used in the older VLAN tagging format (802.1Q-1998) that was replaced by the DEI in the 802.1Q-2005 revision.
             </li>
             <li>
               <strong>VID:</strong> VLAN ID, 12 bits. Indicates the VLAN ID
@@ -477,7 +477,7 @@
           fcs: "FCS",
           tagfieldstpid: "TPID",
           tagfieldspcp: "PCP",
-          tagfieldscfi: "CFI",
+          tagfieldsdei: "DEI",
           tagfieldsvid: "VID",
         };
 
