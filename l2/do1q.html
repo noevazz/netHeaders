@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dot1Q Header Game</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <meta property="og:title" content="Dot1Q Header videogame" />
+    <meta
+      property="og:image"
+      content="https://noevazz.github.io/ipv4headers/ogImage.png"
+    />
+    <meta
+      property="og:description"
+      content="An online videogame to learn the Dot1Q header, drag and drop fields into the Dot1Q packet."
+    />
+    <meta property="og:url" content="https://noevazz.github.io/ipv4headers/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+
+  <body class="w3-container">
+    <div class="w3-bar"></div>
+
+    <div class="w3-bar">
+      <h1 id="h1">Dot1Q Header Drag and Drop Game</h1>
+
+      <button
+        id="showHideAnswers"
+        class="w3-button w3-round w3-margin-top w3-right"
+        onclick="window.location.href='/'"
+        title="go to home page"
+      >
+        Home
+      </button>
+    </div>
+
+    <p>Drag the fields to the correct position in the header table.</p>
+    <br />
+    <br />
+
+    <div class="w3-container w3-center">
+      <div class="w3-bar">
+        <button
+          id="showHideAnswers"
+          class="w3-button w3-round"
+          onclick="showHide()"
+        >
+          show/hide answers
+        </button>
+      </div>
+    </div>
+
+    <div class="w3-container w3-center w3-margin-bottom">
+      <div class="w3-bar">
+        <a
+          id="myLinkedingProfile"
+          href="https://www.linkedin.com/in/josenoevg/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          title="Let´s connect!"
+          ><i class="fab fa-linkedin"></i> Noé Vázquez</a
+        >
+      </div>
+    </div>
+
+    <div class="w3-container w3-center w3-margin-bottom">
+      <div class="w3-bar">
+        Share this game:
+        <a
+          href="https://twitter.com/intent/tweet?url=https://noevazz.github.io/ip/v4&text=Check this videogame to learn the IPv4 Header!."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-twitter shareIcon" title="Share on X"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u=https://noevazz.github.io/ip/v4"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-facebook shareIcon" title="Share on facebook"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https://noevazz.github.io/ip/v4"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-linkedin shareIcon" title="Share on linkedin"></i
+        ></a>
+      </div>
+    </div>
+
+    <div class="w3-container headerTable">
+      <div class="w3-row">
+        <div class="w3-col s12">
+          <!-- Element with 100% width on mobile, 50% width on larger screens -->
+          <div class="w3-card-4 custom-width">
+            <table class="header-table">
+              <tr>
+                <td class="answersTitles" colspan="7">Preamble</td>
+                <td class="answersTitles" colspan="1">SFD</td>
+                <td class="answersTitles" colspan="6">Destination MAC</td>
+                <td class="answersTitles" colspan="6">Source MAC</td>
+                <td class="answersTitles" colspan="2">TPI</td>
+                <td class="answersTitles" colspan="2">TCI</td>
+                <td class="answersTitles" colspan="2">Type/Length</td>
+                <td class="answersTitles" colspan="4">Data</td>
+                <td class="answersTitles" colspan="4">FCS</td>
+              </tr>
+              <tr>
+                <td
+                  id="preamble"
+                  colspan="7"
+                  title="7 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="sfd"
+                  colspan="1"
+                  title="1 byte"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="dst"
+                  colspan="6"
+                  title="6 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="src"
+                  colspan="6"
+                  title="6 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="tpi"
+                  colspan="2"
+                  title="2 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="tci"
+                  colspan="2"
+                  title="2 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="typelenght"
+                  colspan="2"
+                  title="2 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="data"
+                  colspan="4"
+                  title="Up to 1500 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="fcs"
+                  colspan="4"
+                  title="4 bytes"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div id="fields" class="field-container">
+      <div
+        id="field-preamble"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Preamble
+      </div>
+      <div
+        id="field-sfd"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        SFD
+      </div>
+      <div
+        id="field-dst"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Destination MAC
+      </div>
+      <div
+        id="field-src"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Source MAC
+      </div>
+      <div
+        id="field-tpi"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        TPI
+      </div>
+      <div
+        id="field-tci"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        TCI
+      </div>
+      <div
+        id="field-typelenght"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Type/Length
+      </div>
+      <div
+        id="field-data"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Data
+      </div>
+      <div
+        id="field-fcs"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        FCS
+      </div>
+    </div>
+
+    <h2>Tag fields</h2>
+
+    <div class="w3-container headerTable">
+      <div class="w3-row">
+        <div class="w3-col s12">
+          <!-- Element with 100% width on mobile, 50% width on larger screens -->
+          <div class="w3-card-4 custom-width">
+            <table class="header-table">
+              <tr>
+                <td class="answersTitles" colspan="16">TPI</td>
+                <td class="answersTitles" colspan="3">PCP</td>
+                <td class="answersTitles" colspan="1">CFI</td>
+                <td class="answersTitles" colspan="12">VID</td>
+              </tr>
+              <tr>
+                <td
+                  id="tagfieldstpid"
+                  colspan="16"
+                  title="16 bits"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="tagfieldspcp"
+                  colspan="3"
+                  title="3 bits"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="tagfieldscfi"
+                  colspan="1"
+                  title="1 bit"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="tagfieldsvid"
+                  colspan="12"
+                  title="12 bits"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div id="fields" class="field-container">
+      <div
+        id="field-tagfieldstpid"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        TPID
+      </div>
+      <div
+        id="field-tagfieldspcp"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        PCP
+      </div>
+      <div
+        id="field-tagfieldscfi"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        CFI
+      </div>
+      <div
+        id="field-tagfieldsvid"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        VID
+      </div>
+    </div>
+
+    <button
+      onclick="myFunction('Demo1')"
+      class="w3-btn w3-block w3-black w3-left-align"
+    >
+      ▼ Review each field:
+    </button>
+    <div id="Demo1" class="w3-container w3-hide">
+      <ul>
+        <li>
+          Preamble (7 bytes): A sequence of alternating 1s and 0s used to
+          synchronize the clock of the receiving station with the sender's
+          clock.
+        </li>
+        <li>
+          Start Frame Delimiter (SFD) (1 byte): A sequence of bits (10101011)
+          indicating the end of the preamble and the start of the actual frame.
+        </li>
+        <li>
+          Destination MAC Address (6 bytes): The MAC address of the frame's
+          intended recipient.
+        </li>
+        <li>
+          Source MAC Address (6 bytes): The MAC address of the sender of the
+          frame.
+        </li>
+        <li>
+          Tag Protocol Identifier (TPID) (2 bytes): A field set to a fixed value
+          (0x8100) indicating the presence of the 802.1Q tag.
+        </li>
+        <li>
+          Tag Control Information (TCI) (2 bytes): A field with three sub-fields
+          that manage the information.
+        </li>
+        <li>
+          Type/Length (2 bytes):
+          <ul>
+            <li>
+              Type: When the value is greater than or equal to 1536 (0x0600 in
+              hexadecimal), it indicates the protocol type of the payload (e.g.,
+              0x0800 for IPv4, 0x86DD for IPv6). This tells the receiver what
+              protocol to use for processing the payload.
+            </li>
+            <li>
+              Length: When the value is less than 1536, it indicates the length
+              of the payload in bytes. This usage is more common in IEEE 802.3
+              frames.
+            </li>
+          </ul>
+        </li>
+        <li>
+          Data or Payload (46-1500 bytes): The actual data being transported by
+          the frame.
+        </li>
+        <li>
+          Frame Check Sequence (FCS) (4 bytes): A CRC value used for
+          error-checking the frame's integrity.
+        </li>
+      </ul>
+      <p>TAG FIELDS:</p>
+      <ul>
+        <li>
+          <strong>TPID:</strong> Tag Protocol ID, 16 bits. It is alway set to
+          0x8100, this indicates is 802-1q tagged.
+        </li>
+        <li>
+          <strong>TCI:</strong>
+          <ul>
+            <li>
+              <strong>PCP:</strong> Priority Code Point, 3 bits. It is used for
+              Class Of Services (CoS), which prioritize important traffic in
+              congestion networks.
+            </li>
+            <li>
+              <strong>DEI:</strong> Drop Eligible Indicator , 1 bit. Used to
+              indicate if the frame can be dropped if the network is congested.
+            </li>
+            <li>
+              <strong>VID:</strong> VLAN ID, 12 bits. Indicates the VLAN ID
+            </li>
+          </ul>
+        </li>
+      </ul>
+
+      <div>Notes:</div>
+      <ul>
+        <li>
+          Because the VID field is 12 bits long, it means the VLAN ID range is
+          from 0 to 4095 (2^12), however VLAN ID 0 and 4095 are reserved.
+        </li>
+        <li>VLAN ranges:
+          <ul>
+            <li>Normal VLANs: 1 to 1005 (1002 to 1005 are reserved for legacy protocols like token ring).</li>
+            <li>Extended VLANs: 1006 to 4094<, old devices may not support extended VLANS, also VTP (VLAN Trunking Protocol) only allows the extended range if the switch is configured in transparent mode./li>
+          </ul>
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      let correctCount = 0;
+      const totalFields = 13;
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.innerText);
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        const data = event.dataTransfer.getData("text");
+        const targetId = event.target.id;
+
+        const correctMapping = {
+          preamble: "Preamble",
+          sfd: "SFD",
+          dst: "Destination MAC",
+          src: "Source MAC",
+          tpi: "TPI",
+          tci: "TCI",
+          typelenght: "Type/Length",
+          data: "Data",
+          fcs: "FCS",
+          tagfieldstpid: "TPID",
+          tagfieldspcp: "PCP",
+          tagfieldscfi: "CFI",
+          tagfieldsvid: "VID",
+        };
+
+        if (correctMapping[targetId] === data) {
+          if (!event.target.innerText) {
+            event.target.innerText = data;
+            document.getElementById("field-" + targetId).style.visibility =
+              "hidden";
+            correctCount++;
+            if (correctCount === totalFields) {
+              alert(
+                "🎉🎉🥳Congratulations!🎊🎊🎉👏\nYou have correctly completed the IPv4 header.",
+              );
+            }
+          }
+        } else {
+          alert("⚠️Incorrect field.⚠️\nTry again!");
+        }
+      }
+      ////////////////////////////////////////////////////////////
+      // Function to shuffle array elements (Fisher-Yates shuffle algorithm)
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      // Function to shuffle the elements inside #fields container
+      function shuffleElements() {
+        // Select the container
+        const container = document.getElementById("fields");
+
+        // Convert NodeList of children to an array
+        const elements = Array.from(container.children);
+
+        // Shuffle the array of elements
+        const shuffledElements = shuffleArray(elements);
+
+        // Clear the container
+        container.innerHTML = "";
+
+        // Append shuffled elements back into the container
+        shuffledElements.forEach((element) => {
+          container.appendChild(element);
+        });
+      }
+
+      // Example: Call shuffleElements() to shuffle elements on demand
+      shuffleElements();
+
+      ////////////////////////////////////////////////////////////
+      let showHideAnswers = true;
+
+      function showHide() {
+        showHideAnswers = !showHideAnswers;
+        if (showHideAnswers) {
+          hideElements();
+        } else {
+          showElements();
+        }
+      }
+
+      function hideElements() {
+        var elements = document.getElementsByClassName("answersTitles");
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].style.display = "none";
+        }
+      }
+
+      function showElements() {
+        var elements = document.getElementsByClassName("answersTitles");
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].style.display = "table-cell";
+        }
+      }
+      hideElements();
+      //////////////////////////////////////////
+      function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+    </script>
+  </body>
+</html>

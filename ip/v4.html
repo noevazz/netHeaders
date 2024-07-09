@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>IPv4 Header Game</title>
+    <link rel="icon" type="image/png" href="./favicon.png" />
+    <meta property="og:title" content="IPv4 Header videogame" />
+    <meta
+      property="og:image"
+      content="https://noevazz.github.io/ipv4headers/ogImage.png"
+    />
+    <meta
+      property="og:description"
+      content="An online videogame to learn the IPv4 header, drag and drop fields into the IPv4 packet."
+    />
+    <meta property="og:url" content="https://noevazz.github.io/ipv4headers/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+    <link rel="stylesheet" href="../styles/styles.css" />
+  </head>
+
+  <body class="w3-container">
+    <div class="w3-bar"></div>
+
+    <div class="w3-bar">
+      <h1 id="h1">IPv4 Header Drag and Drop Game</h1>
+
+      <button
+        id="showHideAnswers"
+        class="w3-button w3-round w3-margin-top w3-right"
+        onclick="window.location.href='/'"
+        title="go to home page"
+      >
+        Home
+      </button>
+    </div>
+
+    <p>Drag the fields to the correct position in the header table.</p>
+    <br>
+    <br>
+
+    <div class="w3-container w3-center">
+      <div class="w3-bar">
+        <button
+          id="showHideAnswers"
+          class="w3-button w3-round"
+          onclick="showHide()"
+        >
+          show/hide answers
+        </button>
+      </div>
+    </div>
+
+    <div class="w3-container w3-center w3-margin-bottom">
+      <div class="w3-bar">
+        <a
+          id="myLinkedingProfile"
+          href="https://www.linkedin.com/in/josenoevg/"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          title="Let´s connect!"
+          ><i class="fab fa-linkedin"></i> Noé Vázquez</a
+        >
+      </div>
+    </div>
+
+    <div class="w3-container w3-center w3-margin-bottom">
+      <div class="w3-bar">
+        Share this game:
+        <a
+          href="https://twitter.com/intent/tweet?url=https://noevazz.github.io/ip/v4&text=Check this videogame to learn the IPv4 Header!."
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-twitter shareIcon" title="Share on X"></i
+        ></a>
+        <a
+          href="https://www.facebook.com/sharer/sharer.php?u=https://noevazz.github.io/ip/v4"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-facebook shareIcon" title="Share on facebook"></i
+        ></a>
+        <a
+          href="https://www.linkedin.com/sharing/share-offsite/?url=https://noevazz.github.io/ip/v4"
+          target="_blank"
+          rel="noopener noreferrer"
+          class="share-btn"
+          ><i class="fab fa-linkedin shareIcon" title="Share on linkedin"></i
+        ></a>
+      </div>
+    </div>
+
+    <div class="w3-container headerTable">
+      <div class="w3-row">
+        <div class="w3-col s12">
+          <!-- Element with 100% width on mobile, 50% width on larger screens -->
+          <div class="w3-card-4 custom-width">
+            <table class="header-table">
+              <tr>
+                <td id="padding" colspan="32">32 bits</td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="4">Version</td>
+                <td class="answersTitles" colspan="4">Header Length</td>
+                <td class="answersTitles" colspan="6">DSCP</td>
+                <td class="answersTitles" colspan="2">ECN</td>
+                <td class="answersTitles" colspan="16">Total Length</td>
+              </tr>
+              <tr>
+                <td
+                  id="version"
+                  colspan="4"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="ihl"
+                  colspan="4"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="dscp"
+                  colspan="6"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="ecn"
+                  colspan="2"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="totalLength"
+                  colspan="16"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="16">Identifier</td>
+                <td class="answersTitles" colspan="4">Flags</td>
+                <td class="answersTitles" colspan="12">Fragment Offset</td>
+              </tr>
+              <tr>
+                <td
+                  id="identifier"
+                  colspan="16"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="flags"
+                  colspan="4"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="fragmentOffset"
+                  colspan="12"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="8">Time to Live</td>
+                <td class="answersTitles" colspan="8">Protocol</td>
+                <td class="answersTitles" colspan="16">Header Checksum</td>
+              </tr>
+              <tr>
+                <td
+                  id="ttl"
+                  colspan="8"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="protocol"
+                  colspan="8"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+                <td
+                  id="headerChecksum"
+                  colspan="16"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="32">Source Address</td>
+              </tr>
+              <tr>
+                <td
+                  id="sourceAddress"
+                  colspan="32"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="32">Destination Address</td>
+              </tr>
+              <tr>
+                <td
+                  id="destinationAddress"
+                  colspan="32"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="32">Options</td>
+              </tr>
+              <tr>
+                <td
+                  id="options"
+                  colspan="32"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td class="answersTitles" colspan="32">Padding</td>
+              </tr>
+              <tr>
+                <td
+                  id="padding"
+                  colspan="32"
+                  ondrop="drop(event)"
+                  ondragover="allowDrop(event)"
+                ></td>
+              </tr>
+              <tr>
+                <td id="padding" colspan="32">Data</td>
+              </tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <br />
+
+    <div id="fields" class="field-container">
+      <div
+        id="field-version"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Version
+      </div>
+      <div
+        id="field-ihl"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Header Length
+      </div>
+      <div
+        id="field-dscp"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        DSCP
+      </div>
+      <div
+        id="field-ecn"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        ECN
+      </div>
+      <div
+        id="field-totalLength"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Total Length
+      </div>
+      <div
+        id="field-identifier"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Identifier
+      </div>
+      <div
+        id="field-flags"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Flags
+      </div>
+      <div
+        id="field-fragmentOffset"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Fragment Offset
+      </div>
+      <div
+        id="field-ttl"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Time to Live
+      </div>
+      <div
+        id="field-protocol"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Protocol
+      </div>
+      <div
+        id="field-headerChecksum"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Header Checksum
+      </div>
+      <div
+        id="field-sourceAddress"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Source Address
+      </div>
+      <div
+        id="field-destinationAddress"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Destination Address
+      </div>
+      <div
+        id="field-options"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Options
+      </div>
+      <div
+        id="field-padding"
+        class="draggable"
+        draggable="true"
+        ondragstart="drag(event)"
+      >
+        Padding
+      </div>
+    </div>
+
+    <button
+      onclick="myFunction('Demo1')"
+      class="w3-btn w3-block w3-black w3-left-align"
+    >
+      ▼ Review each field:
+    </button>
+    <div id="Demo1" class="w3-container w3-hide">
+      <ul>
+        <li>
+          <strong>Version:</strong> Specifies the IP version (typically IPv4).
+        </li>
+        <li>
+          <strong>Header Length:</strong> Size of the header in 32-bit words. It
+          is common to find this field named as IHL, Internet Header Length.
+        </li>
+        <li>
+          <strong>DSCP :</strong> (Differentiated Services Code Point): This
+          field replaces the first 6 bits of the original ToS field. It allows
+          specifying a value that indicates the desired class of service for
+          network traffic. DSCP is used to prioritize and manage traffic based
+          on different service levels desired.
+        </li>
+        <li>
+          <strong>ECN:</strong> (Explicit Congestion Notification): The last 2
+          bits of the original ToS field were reserved for ECN in the IP header.
+          ECN enables routers to notify endpoints about congestion in the
+          network, aiding in traffic flow management and improving network
+          performance by avoiding congestion.
+        </li>
+
+        <li>
+          <strong>Total Length:</strong> Total size of the packet (header +
+          data).
+        </li>
+        <li>
+          <strong>Identification:</strong> Unique identifier for the packet used
+          for fragmentation and reassembly of packets.
+        </li>
+        <li><strong>Flags:</strong> Control fragmentation behavior.</li>
+        <li>
+          <strong>Fragment Offset:</strong> Position of the fragment in the
+          original packet.
+        </li>
+        <li>
+          <strong>Time to Live (TTL):</strong> Limits packet lifetime in the
+          network.
+        </li>
+        <li>
+          <strong>Protocol:</strong> Specifies the protocol in the data portion
+          (e.g., TCP, UDP).
+        </li>
+        <li><strong>Header Checksum:</strong> Ensures header integrity.</li>
+        <li><strong>Source IP Address:</strong> Originating IP address.</li>
+        <li><strong>Destination IP Address:</strong> Target IP address.</li>
+        <li>
+          <strong>Options (optional*):</strong> It is variable in size and can
+          contain additional information specific to how the IP packet should be
+          processed.
+        </li>
+        <li>
+          <strong>*Padding (optional):</strong> added only when the options
+          field's length is not already a multiple of 32 bits (4 bytes)
+        </li>
+      </ul>
+      <div>Notes:</div>
+      <ul>
+        <li>
+          In the context of IPv4 headers and many networking protocols, a
+          <strong>"word"</strong> refers to a unit of data size, specifically 32
+          bits or 4 bytes.
+        </li>
+        <li>
+          The fields from "Version" to "Header Checksum" sum up 20 bytes. If th
+          IHL field have the value of 5 (5x4 = 20 bytes) it is an indication
+          that Options are not added.
+        </li>
+        <li>
+          Since the IHL field is 4 bits length, then the maximum size for the
+          IPv4 headers is 15x4 = 60 bytes
+        </li>
+        <li>
+          there isn't a specific field designated for "padding" in the
+          traditional sense like in some other protocols. However, the concept
+          of padding can be relevant in the context of ensuring that the packet
+          meets minimum size requirements.
+        </li>
+        <li>
+          In the past there was a field called "Type of Service" (ToS), but now
+          has been replaced with DSCP and ECN.
+        </li>
+      </ul>
+    </div>
+
+    <script>
+      let correctCount = 0;
+      const totalFields = 15;
+
+      function allowDrop(event) {
+        event.preventDefault();
+      }
+
+      function drag(event) {
+        event.dataTransfer.setData("text", event.target.innerText);
+      }
+
+      function drop(event) {
+        event.preventDefault();
+        const data = event.dataTransfer.getData("text");
+        const targetId = event.target.id;
+
+        const correctMapping = {
+          version: "Version",
+          ihl: "Header Length",
+          dscp: "DSCP",
+          ecn: "ECN",
+          totalLength: "Total Length",
+          identifier: "Identifier",
+          flags: "Flags",
+          fragmentOffset: "Fragment Offset",
+          ttl: "Time to Live",
+          protocol: "Protocol",
+          headerChecksum: "Header Checksum",
+          sourceAddress: "Source Address",
+          destinationAddress: "Destination Address",
+          options: "Options",
+          padding: "Padding",
+        };
+
+        if (correctMapping[targetId] === data) {
+          if (!event.target.innerText) {
+            event.target.innerText = data;
+            document.getElementById("field-" + targetId).style.visibility =
+              "hidden";
+            correctCount++;
+            if (correctCount === totalFields) {
+              alert(
+                "🎉🎉🥳Congratulations!🎊🎊🎉👏\nYou have correctly completed the IPv4 header.",
+              );
+            }
+          }
+        } else {
+          alert("⚠️Incorrect field.⚠️\nTry again!");
+        }
+      }
+      ////////////////////////////////////////////////////////////
+      // Function to shuffle array elements (Fisher-Yates shuffle algorithm)
+      function shuffleArray(array) {
+        for (let i = array.length - 1; i > 0; i--) {
+          const j = Math.floor(Math.random() * (i + 1));
+          [array[i], array[j]] = [array[j], array[i]];
+        }
+        return array;
+      }
+
+      // Function to shuffle the elements inside #fields container
+      function shuffleElements() {
+        // Select the container
+        const container = document.getElementById("fields");
+
+        // Convert NodeList of children to an array
+        const elements = Array.from(container.children);
+
+        // Shuffle the array of elements
+        const shuffledElements = shuffleArray(elements);
+
+        // Clear the container
+        container.innerHTML = "";
+
+        // Append shuffled elements back into the container
+        shuffledElements.forEach((element) => {
+          container.appendChild(element);
+        });
+      }
+
+      // Example: Call shuffleElements() to shuffle elements on demand
+      shuffleElements();
+
+      ////////////////////////////////////////////////////////////
+      let showHideAnswers = true;
+
+      function showHide() {
+        showHideAnswers = !showHideAnswers;
+        if (showHideAnswers) {
+          hideElements();
+        } else {
+          showElements();
+        }
+      }
+
+      function hideElements() {
+        var elements = document.getElementsByClassName("answersTitles");
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].style.display = "none";
+        }
+      }
+
+      function showElements() {
+        var elements = document.getElementsByClassName("answersTitles");
+        for (var i = 0; i < elements.length; i++) {
+          elements[i].style.display = "table-cell";
+        }
+      }
+      hideElements();
+      //////////////////////////////////////////
+      function myFunction(id) {
+        var x = document.getElementById(id);
+        if (x.className.indexOf("w3-show") == -1) {
+          x.className += " w3-show";
+        } else {
+          x.className = x.className.replace(" w3-show", "");
+        }
+      }
+    </script>
+  </body>
+</html>
