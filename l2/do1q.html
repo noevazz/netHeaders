@@ -315,7 +315,7 @@
 
     <br />
 
-    <div id="fields" class="field-container">
+    <div id="fields2" class="field-container">
       <div
         id="field-tagfieldstpid"
         class="draggable"
@@ -508,9 +508,9 @@
       }
 
       // Function to shuffle the elements inside #fields container
-      function shuffleElements() {
+      function shuffleElements(parentID) {
         // Select the container
-        const container = document.getElementById("fields");
+        const container = document.getElementById(parentID);
 
         // Convert NodeList of children to an array
         const elements = Array.from(container.children);
@@ -528,7 +528,8 @@
       }
 
       // Example: Call shuffleElements() to shuffle elements on demand
-      shuffleElements();
+      shuffleElements("fields");
+      shuffleElements("fields2");
 
       ////////////////////////////////////////////////////////////
       let showHideAnswers = true;
